@@ -22,5 +22,4 @@ Starting ping and DNS resolution. Results will be saved in output.txt.
 Host 192.168.1.150 is UP. Hostname: example1.com.
 Host 192.168.1.151 is DOWN.
 Host 192.168.1.152 is DOWN.
-Host 192.168.1.153 is DOWN.
 ```
