@@ -1,38 +1,35 @@
 #!/bin/bash
 
-# Define the list of IP addresses to ping
-IP_ADDRESSES=(
-    "10.0.0.72" "172.30.0.75" "172.21.24.42" "192.168.0.23")
+IP_FILE="devices.txt"
+OUTPUT_FILE="ivl_m6_rack3_ping_results.txt"
 
-# Define the output file
-OUTPUT_FILE="output.txt"
-
-# Empty or create the output file
+# Clear or create the output file
 > "$OUTPUT_FILE"
 
-# Loop through each IP address in the array
-for IP_ADDRESS in "${IP_ADDRESSES[@]}"; do
-    # Attempt to resolve the hostname from the IP address
-    # host command output format: IP_ADDRESS.in-addr.arpa domain name pointer HOSTNAME.
-    # We want to extract HOSTNAME.
-    HOSTNAME=$(host "$IP_ADDRESS" | awk '/domain name pointer/ {print $NF}' | sed 's/\.$//')
+# Check if the IP file exists
+if [ ! -f "$IP_FILE" ]; then
+    echo "Error: IP address file '$IP_FILE' not found." | tee -a "$OUTPUT_FILE"
+    exit 1
+fi
 
-    # If hostname resolution fails, set a placeholder
-    if [ -z "$HOSTNAME" ]; then
-        DISPLAY_NAME="[Hostname not found]"
-    else
-        DISPLAY_NAME="$HOSTNAME"
-    fi
+echo "Starting ping operations..." | tee -a "$OUTPUT_FILE"
 
-    # Ping the host with 2 packets and a timeout of 0.1 second
-    ping -c 2 -W 0.1 "$IP_ADDRESS" &> /dev/null
+# Loop through each IP address in the file
+while IFS= read -r IP; do
+    # Skip empty lines and comments
+    [[ -z "$IP" || "$IP" =~ ^# ]] && continue
 
-    # Check the result of the ping command
+    # Resolve hostname or set placeholder
+    HOSTNAME=$(host "$IP" 2>/dev/null | awk '/domain name pointer/ {print $NF}' | sed 's/\.$//')
+    DISPLAY_NAME="${HOSTNAME:-[Hostname not found]}"
+
+    # Ping the IP and check status
+    ping -c 2 -W 0.1 "$IP" &> /dev/null
     if [ $? -eq 0 ]; then
-        echo "Host $IP_ADDRESS $DISPLAY_NAME is UP." | tee -a "$OUTPUT_FILE"
+        echo "Host $IP ($DISPLAY_NAME) is UP." | tee -a "$OUTPUT_FILE"
     else
-        echo "Host $IP_ADDRESS $DISPLAY_NAME is DOWN." | tee -a "$OUTPUT_FILE"
+        echo "Host $IP ($DISPLAY_NAME) is DOWN." | tee -a "$OUTPUT_FILE"
     fi
-done
+done < "$IP_FILE"
 
-echo "Ping operations have completed. Results are saved in $OUTPUT_FILE."
+echo "Ping operations completed. Results saved in $OUTPUT_FILE." | tee -a "$OUTPUT_FILE"
