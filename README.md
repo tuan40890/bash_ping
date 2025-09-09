@@ -6,10 +6,10 @@ Script executed on Ubuntu 22.04.5 LTS (Jammy Jellyfish)
 # Output Example:
 ```
 test-user@vmserver:~$ ./bash_ping1.sh
-Starting ping operations...
-Host 192.168.1.150 (example1.com) is UP.
-Host 192.168.1.151 (example2.com) is UP.
-Host 192.168.1.152 (example3.com) is UP.
+Pinging...
+192.168.1.150 (example1.com) is UP
+192.168.1.151 (example2.com) is UP
+192.168.1.152 (example3.com) is UP
 ```
 
 # bash_ping2.sh - Ping A Range Within The /24 Subnet
