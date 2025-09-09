@@ -5,7 +5,7 @@ Script executed on Ubuntu 22.04.5 LTS (Jammy Jellyfish)
 - If the host is up, DNS entry is also displayed.
 # Output Example:
 ```
-test-user@servervm:~$ ./bash_ping1.sh
+test-user@vmserver:~$ ./bash_ping1.sh
 Starting ping operations...
 Host 192.168.1.150 (example1.com) is UP.
 Host 192.168.1.151 (example2.com) is UP.
