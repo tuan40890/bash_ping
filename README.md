@@ -1,7 +1,7 @@
 Script executed on Ubuntu 22.04.5 LTS (Jammy Jellyfish)
 
 # bash_ping1.sh - Ping Multiple Random IP Addresses
-- This script pings multiple random IP addresses listed from devices.txt
+- This script pings multiple random IP addresses listed from the devices.txt file.
 - If the host is up, DNS entry is also displayed.
 # Output Example:
 ```
@@ -13,7 +13,7 @@ Host 192.168.1.152 (example3.com) is UP.
 ```
 
 # bash_ping2.sh - Ping A Range Within The /24 Subnet
-- This script pings continous IP addresses within a /24 subnet.
+- This script pings continous IP addresses within a /24 subnet and does not need the devices.txt file.
 - If the host is up, DNS entry is also displayed.
 # Output Example:
 ```
