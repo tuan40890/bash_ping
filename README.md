@@ -1,4 +1,5 @@
 # Ping Multiple Random IP Address
+## Script was ran on Ubuntu 22.04.5 LTS (Jammy Jellyfish)
 ## This script pings multiple random IP addresses listed within the script.
 ## If the host is up, DNS entry is also displayed.
 ### Output Example
