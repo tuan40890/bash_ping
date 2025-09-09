@@ -1,6 +1,7 @@
 Script executed on Ubuntu 22.04.5 LTS (Jammy Jellyfish)
 
 # bash_ping1.sh - Ping Multiple Random IP Addresses
+- requires devices.txt
 - This script pings multiple random IP addresses listed explicitly within the script.
 - If the host is up, DNS entry is also displayed.
 # Output Example:
