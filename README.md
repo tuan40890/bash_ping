@@ -1,4 +1,4 @@
-# Ping Multiple Random IP Addresses
+# bash_ping.sh - Ping Multiple Random IP Addresses
 ## Script executed on Ubuntu 22.04.5 LTS (Jammy Jellyfish)
 ## This script pings multiple random IP addresses listed explicitly within the script.
 ## If the host is up, DNS entry is also displayed.
@@ -11,7 +11,7 @@ Host 172.21.24.42 example3.com is UP.
 Host 192.168.0.23 example41.com is UP.
 ```
 
-# Ping A Range Within The /24 Subnet
+# bash_ping2.sh - Ping A Range Within The /24 Subnet
 ## Script executed on Ubuntu 22.04.5 LTS (Jammy Jellyfish)
 ## This script pings continous IP addresses within a /24 subnet.
 ## If the host is up, DNS entry is also displayed.
